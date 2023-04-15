@@ -12,8 +12,12 @@ const MovieDetailsPages = () => {
   const { movieId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [backLinkHref, setbackLinkHref] = useState({ pathname: '/movies' });
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/movies';
+
+  useEffect(() => {
+    setbackLinkHref(location.state?.from ?? { pathname: '/movies' });
+  }, []);
 
   useEffect(() => {
     if (movieId === '') return;
