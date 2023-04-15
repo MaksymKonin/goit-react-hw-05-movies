@@ -22,6 +22,7 @@ const MovieDetailsPages = () => {
       async function getMovieById() {
         const dataMovie = await fetchMovieById(`${movieId}`);
         setDataMovie(dataMovie);
+        setIsError(false);
       }
       getMovieById();
     } catch (error) {

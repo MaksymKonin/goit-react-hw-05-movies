@@ -13,19 +13,21 @@ const Cast = () => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
+    if (movieId === '') return;
     setIsLoading(true);
-    try {
-      if (movieId === '') return;
-      async function getCast() {
+
+    async function getCast() {
+      try {
         const { cast } = await fetchCast(`${movieId}`);
         setCast(cast);
+        setIsError(false);
+      } catch (error) {
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
       }
-      getCast();
-    } catch (error) {
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
     }
+    getCast();
   }, [movieId]);
 
   return (

@@ -13,18 +13,19 @@ const HomePages = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    try {
-      async function getTrendingMoviesDay() {
+
+    async function getTrendingMoviesDay() {
+      try {
         const newMovies = await fetchTrendingMoviesDay();
         setMovies(newMovies);
+        setIsError(false);
+      } catch (error) {
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
       }
-      getTrendingMoviesDay();
-      setIsError(false);
-    } catch (error) {
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
     }
+    getTrendingMoviesDay();
   }, []);
 
   return (

@@ -13,19 +13,20 @@ const Reviews = () => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
+    if (movieId === '') return;
     setIsLoading(true);
-    try {
-      if (movieId === '') return;
-      async function getReviews() {
+    async function getReviews() {
+      try {
         const { results } = await fetchReviews(`${movieId}`);
         setReviews(results);
+        setIsError(false);
+      } catch (error) {
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
       }
-      getReviews();
-    } catch (error) {
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
     }
+    getReviews();
   }, [movieId]);
   return (
     <>

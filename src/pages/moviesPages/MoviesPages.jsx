@@ -25,17 +25,18 @@ const MoviesPages = () => {
   useEffect(() => {
     if (searchQuery === '') return;
     setIsLoading(true);
-    try {
-      async function fetchSearchQuery() {
+    async function fetchSearchQuery() {
+      try {
         const newMovies = await fetchSearchMovies(searchQuery);
         setMovies(newMovies);
+        setIsError(false);
+      } catch (error) {
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
       }
-      fetchSearchQuery();
-    } catch (error) {
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
     }
+    fetchSearchQuery();
   }, [searchQuery]);
 
   const handleSubmit = e => {
@@ -43,7 +44,9 @@ const MoviesPages = () => {
     setSearchParams({ query: searchValue.trim() });
   };
 
-  const status = movies?.length === 0 && searchQuery !== '' ? true : false;
+  const status =
+    movies?.length === 0 && searchQuery !== '' && !isError ? true : false;
+  console.log(status);
 
   return (
     <>
