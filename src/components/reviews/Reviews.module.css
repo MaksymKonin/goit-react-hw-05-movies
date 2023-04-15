@@ -1,0 +1,15 @@
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px;
+  border-bottom: 2px solid rgba(17, 17, 17, 0.2);
+  background-color: #fffcfc;
+}
