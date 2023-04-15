@@ -46,7 +46,6 @@ const MoviesPages = () => {
 
   const status =
     movies?.length === 0 && searchQuery !== '' && !isError ? true : false;
-  console.log(status);
 
   return (
     <>

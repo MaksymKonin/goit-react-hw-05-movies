@@ -16,8 +16,8 @@ const MovieDetailsPages = () => {
   const location = useLocation();
 
   useEffect(() => {
-    setbackLinkHref(location.state?.from ?? { pathname: '/movies' });
-  }, []);
+    if (location.state?.from) setbackLinkHref(location.state?.from);
+  }, [location.state?.from]);
 
   useEffect(() => {
     if (movieId === '') return;
