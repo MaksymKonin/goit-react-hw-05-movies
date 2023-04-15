@@ -43,6 +43,8 @@ const MoviesPages = () => {
     setSearchParams({ query: searchValue.trim() });
   };
 
+  const status = movies?.length === 0 && searchQuery !== '' ? true : false;
+
   return (
     <>
       <form onSubmit={handleSubmit} className={css.searchForm}>
@@ -66,9 +68,7 @@ const MoviesPages = () => {
         </Message>
       )}
       {movies?.length > 0 && <ListMovies movies={movies} />}
-      {movies?.length === 0 && searchQuery !== '' && (
-        <h3>Nothing was found for your request</h3>
-      )}
+      {status && <h3>Nothing was found for your request</h3>}
     </>
   );
 };
