@@ -86,7 +86,7 @@ const MovieDetailsPages = () => {
           </NavLink>
         </li>
       </ul>
-      <Suspense>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </>
